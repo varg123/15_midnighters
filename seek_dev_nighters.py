@@ -23,7 +23,7 @@ def get_midnighters():
       for attempt in load_attempts():
             user_timezone = timezone(attempt['timezone'])
             user_time = user_timezone.localize(datetime.datetime.fromtimestamp(attempt['timestamp']))
-            if START_NIGHT_HOUR < user_time.hour < STOP_NIGHT_HOUR:
+            if START_NIGHT_HOUR <= user_time.hour < STOP_NIGHT_HOUR:
                   yield attempt['username']
 
 
