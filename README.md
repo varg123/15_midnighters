@@ -1,7 +1,33 @@
-# Night Owls Detector
+# Поиск сов на Devman
 
-[TODO. There will be project description]
+Выводит количество пользователей отправивших решение задач в установленные рамки(по умолчанию с 0:00 до 6:00)
 
-# Project Goals
+# Как запустить
 
-The code is written for educational purposes. Training course for web-developers - [DEVMAN.org](https://devman.org)
+Скрипт требует для своей работы установленного интерпретатора Python версии 3.5.
+Для установки временных рамок изменяются констаныт в исходном коде: 
+
+1. `START_NIGHT_HOUR` - начальный час 
+2. `STOP_NIGHT_HOUR` - конечный час.
+
+Пример на Linux:
+
+```bash
+
+$ python seek_dev_nighters.py
+Всего сов:  8
+6006l1k
+PeterChe
+kosmontin
+constantinovich
+1d964ba0d0604b37
+idmedvedevivan
+andreishkilev1993
+ekluev
+
+```
+
+# Цели проекта
+
+Код создан в учебных целях. В рамках учебного курса по веб-разработке - [DEVMAN.org](https://devman.org)
+
