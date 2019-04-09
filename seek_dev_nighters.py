@@ -31,8 +31,8 @@ def get_midnighters():
 
 def main():
     midnighters = set(get_midnighters())
-    print("Всего сов: ", len(midnighters))
-    print("А именно:")
+    print('Всего сов: ', len(midnighters))
+    print('А именно:')
     for midnighter in midnighters:
         print(midnighter)
 
