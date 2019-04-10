@@ -8,23 +8,22 @@ STOP_NIGHT_HOUR = 6
 
 
 def load_attempts():
-    responce = requests.get(URL_API)
-    pages_count = responce.json()['number_of_pages']
-    start_page = responce.json()['page']
-    yield from responce.json()['records']
-    for page_number in range(start_page+1, pages_count+1):
+    current_page = 1
+    end_page = 1
+    while current_page <= end_page:
         params = {
-              'page': page_number
+              'page': current_page
         }
-        responce = requests.get(URL_API, params=params)
-        yield from responce.json()['records']
+        attempts = requests.get(URL_API, params=params).json()
+        end_page = attempts['number_of_pages']
+        current_page += 1
+        yield from attempts['records']
 
 
 def get_midnighters():
     for attempt in load_attempts():
         user_timezone = timezone(attempt['timezone'])
-        user_time_stamp = datetime.fromtimestamp(attempt['timestamp'])
-        user_time = user_timezone.localize(user_time_stamp)
+        user_time = datetime.fromtimestamp(attempt['timestamp'], user_timezone)
         if START_NIGHT_HOUR <= user_time.hour < STOP_NIGHT_HOUR:
             yield attempt['username']
 
